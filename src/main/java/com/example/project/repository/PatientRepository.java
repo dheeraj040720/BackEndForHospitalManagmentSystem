@@ -17,6 +17,9 @@ import com.example.project.model.Patient;
 		//deleteById()----> delete from table where id=?
 		//update()---------->update table set columnname=? where id=?
 
+
+		public  Patient findByUsernameAndPassword(String username,String password);
+
 	}
 
 

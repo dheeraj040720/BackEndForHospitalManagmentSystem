@@ -1,2 +1,0 @@
-# HospitalManagment
-Major Project

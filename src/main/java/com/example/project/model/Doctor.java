@@ -1,53 +1,101 @@
 package com.example.project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="DocterDetails")
 
 public class Doctor {
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int doctorID;
-	private String name;
-	private String specialization;
-	private String phone;
-	private String email;
-	private String department;
+	private String doctorName;
+	private String DoctorSpecialization;
+	private String DoctorPhoneNumber;
+	private String DoctorEmail;
+	private String DoctorDepartment;
+
+	private String username;
+	private String password;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "Doctor{" +
+				"doctorID=" + doctorID +
+				", doctorName='" + doctorName + '\'' +
+				", DoctorSpecialization='" + DoctorSpecialization + '\'' +
+				", DoctorPhoneNumber='" + DoctorPhoneNumber + '\'' +
+				", DoctorEmail='" + DoctorEmail + '\'' +
+				", DoctorDepartment='" + DoctorDepartment + '\'' +
+				'}';
+	}
+
 	public int getDoctorID() {
 		return doctorID;
 	}
+
 	public void setDoctorID(int doctorID) {
 		this.doctorID = doctorID;
 	}
-	public String getName() {
-		return name;
+	public String getDoctorName() {
+		return doctorName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
 	}
-	public String getSpecialization() {
-		return specialization;
+
+	public String getDoctorSpecialization() {
+		return DoctorSpecialization;
 	}
-	public void setSpecialization(String specialization) {
-		this.specialization = specialization;
+
+	public void setDoctorSpecialization(String doctorSpecialization) {
+		DoctorSpecialization = doctorSpecialization;
 	}
-	public String getPhone() {
-		return phone;
+
+	public String getDoctorPhoneNumber() {
+		return DoctorPhoneNumber;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+
+	public void setDoctorPhoneNumber(String doctorPhoneNumber) {
+		DoctorPhoneNumber = doctorPhoneNumber;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getDoctorEmail() {
+		return DoctorEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setDoctorEmail(String doctorEmail) {
+		DoctorEmail = doctorEmail;
 	}
-	public String getDepartment() {
-		return department;
+
+	public String getDoctorDepartment() {
+		return DoctorDepartment;
 	}
-	public void setDepartment(String department) {
-		this.department = department;
+
+	public void setDoctorDepartment(String doctorDepartment) {
+		DoctorDepartment = doctorDepartment;
 	}
+
+
+
 
 }

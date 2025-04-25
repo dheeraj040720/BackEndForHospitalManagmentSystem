@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.example.project.model.Patient;
 import com.example.project.repository.PatientRepository;
 import com.example.project.service.PatientService;
-import com.example.project.service.atientService;
 
 @Service
 	public class PatientSericeimpl implements PatientService{
@@ -44,16 +43,21 @@ import com.example.project.service.atientService;
 	public Patient updatePatientById(int patientId, Patient newpatient) {
 		// TODO Auto-generated method stub
 		Patient existingPatient=getPatientById(patientId);
-		existingPatient.setAddress(newpatient.getAddress());
-		existingPatient.setName(newpatient.getName());
-		existingPatient.setEmail(newpatient.getEmail());
-		existingPatient.setGender(newpatient.getGender());
-		existingPatient.setPhoneNum(newpatient.getPhoneNum());
+		existingPatient.setPatientaddress(newpatient.getPatientaddress());
+		existingPatient.setPatientname(newpatient.getPatientname());
+		existingPatient.setPatientemail(newpatient.getPatientemail());
+		existingPatient.setPatientgender(newpatient.getPatientgender());
+		existingPatient.setPatientphoneNum(newpatient.getPatientphoneNum());
 		
 		
 		return patientRepository.save(newpatient)  ;
 	}
 
+	@Override
+	public Patient loginPatient(Patient patient) {
+		return patientRepository.findByUsernameAndPassword(patient.getUsername(),patient.getPassword());
 	}
+
+}
 
 

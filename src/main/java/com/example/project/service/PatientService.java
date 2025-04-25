@@ -16,6 +16,7 @@ public interface PatientService {
 		public Patient getPatientById(int patientID);
 		public void removePatientById(int patientID);
 		public Patient updatePatientById(int patientId, Patient patient);
+		public Patient loginPatient(Patient patient);
 		
 	}
 
