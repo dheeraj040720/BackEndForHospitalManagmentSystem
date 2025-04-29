@@ -17,7 +17,6 @@ import java.util.List;
 public class AppointmentImpl  implements AppointmentService {
 
 
-
     @Autowired
     AppointmentRepository appointmentRepository;
 
@@ -28,7 +27,13 @@ public class AppointmentImpl  implements AppointmentService {
     DoctorService doctorService;
 
     @Override
-    public Appointment addAppointment(int patientId,int doctorId,Appointment appointment) {
+    public Appointment addAppointment(int patientId, int doctorId, Appointment appointment) {
+
+        if (appointmentRepository.existsByPatient_PatientIDAndDoctor_DoctorIDAndAppointmentDateAndAppointmentTime(patientId, doctorId, appointment.getAppointmentDate(), appointment.getAppointmentTime())) {
+
+            throw new RuntimeException("AN appointment already exists for this patient and doctor on specified date");
+        }
+
         Patient patient = patientService.getPatientById(patientId);
         Doctor doctor = doctorService.getDoctorById(doctorId);
         appointment.setPatient(patient);
@@ -40,6 +45,43 @@ public class AppointmentImpl  implements AppointmentService {
     public List<Appointment> getAppointmentByDoctorId(int doctorId) {
         return appointmentRepository.findByDoctorDoctorID(doctorId);
     }
+
+    @Override
+    public List<Appointment> getAppointmentByPatientId(int patientId) {
+        return appointmentRepository.findByPatientPatientID(patientId);
+    }
+
+    @Override
+    public List<Appointment> getAllAppointment() {
+        return appointmentRepository.findAll();
+    }
+
+    @Override
+    public List<Appointment> removeAppointmentById(int appointmentid) {
+
+        appointmentRepository.deleteById(appointmentid);
+
+
+        return appointmentRepository.findAll();
+    }
+
+    @Override
+    public Appointment getAppointmentByAppointmentId(int appointmentid) {
+        return appointmentRepository.findById(appointmentid).get();
+    }
+
+    @Override
+    public boolean checkAppointmentExists(int patientId, int doctorId, String appointmentDate, String appointmentTime) {
+        return appointmentRepository.existsByPatient_PatientIDAndDoctor_DoctorIDAndAppointmentDateAndAppointmentTime(
+                patientId, doctorId, appointmentDate, appointmentTime);
+    }
+
+}
+
+
+
+
+
 /*
     @Override
     public List<Appointment> getAllAppointments() {
@@ -50,5 +92,5 @@ public class AppointmentImpl  implements AppointmentService {
     public Appointment getAppointmentById(int appointmentId) {
         return appointmentRepository.findById(appointmentId).get();
     }*/
-}
+
 

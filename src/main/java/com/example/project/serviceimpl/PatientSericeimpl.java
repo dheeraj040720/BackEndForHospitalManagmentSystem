@@ -33,10 +33,14 @@ import com.example.project.service.PatientService;
 	}
 
 	@Override
-	public void removePatientById(int patientID) {
+	public List<Patient> removePatientById(int patientID) {
 		// TODO Auto-generated method stub
 		Patient patient =getPatientById(patientID);
+
+
 		patientRepository.deleteById(patientID);
+		return  patientRepository.findAll();
+
 	}
 
 	@Override

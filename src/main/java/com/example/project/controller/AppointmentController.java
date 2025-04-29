@@ -31,4 +31,41 @@ public class AppointmentController {
         return appointmentService.getAppointmentByDoctorId(doctorId);
     }
 
-}
+    @GetMapping("/{appointmentid}")
+  public ResponseEntity<Appointment> getAppointmentByID(@PathVariable("appointmentid") int appointmentid)
+  {
+      return  new ResponseEntity<Appointment>(appointmentService.getAppointmentByAppointmentId(appointmentid),HttpStatus.OK);
+  }
+
+    @GetMapping("/getappointbypatientID/{patientId}")
+    public List<Appointment> getAppointmentByDoctorId(@PathVariable("patientId") int patientId) {
+
+        return appointmentService.getAppointmentByPatientId(patientId);
+    }
+
+
+
+    @GetMapping("/check")
+    public ResponseEntity<Boolean> checkAppointmentExists(
+
+            @RequestParam("patientId") int patientId,
+            @RequestParam("doctorId") int doctorId,
+        @RequestParam("appointmentDate") String appointmentDate,
+        @RequestParam("appointmentTime") String appointmentTime) {
+
+            boolean exists = appointmentService.checkAppointmentExists(patientId, doctorId, appointmentDate, appointmentTime);
+
+            return new ResponseEntity<>(exists, HttpStatus.OK);
+
+        }
+
+
+        @DeleteMapping("/getappointmentafterdelete/{appointmentid}")
+        public List<Appointment> removeAppointmentId(@PathVariable("appointmentid") int appointmentid)
+        {
+            return  appointmentService.removeAppointmentById(appointmentid);
+         //   return appointmentService.getAllAppointment();
+        }
+
+    }
+

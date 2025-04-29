@@ -33,11 +33,12 @@ public class DoctorServiceImpl implements DoctorService
     }
 
     @Override
-    public void deleteDoctorById(int doctorID) {
+    public List<Doctor> deleteDoctorById(int doctorID) {
 
         Doctor doctor = getDoctorById(doctorID);
         doctorRepository.deleteById(doctorID);
 
+        return doctorRepository.findAll();
     }
 
     @Override

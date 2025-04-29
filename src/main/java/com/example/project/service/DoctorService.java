@@ -14,7 +14,7 @@ public interface DoctorService {
 
     public Doctor getDoctorById(int doctorID);
 
-    public void deleteDoctorById(int doctorID);
+    public List<Doctor> deleteDoctorById(int doctorID);
 
     public Doctor updateDoctorById(int doctorID,Doctor doctor);
 

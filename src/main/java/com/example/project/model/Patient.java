@@ -1,10 +1,9 @@
 package com.example.project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.project.repository.PatientRepository;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="PatientDetails")
@@ -16,6 +15,17 @@ public class  Patient {
 	private String patientname;
 	private String patientgender;
 
+	//added this code to resolve delete function
+
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	private List<Appointment> appointments;
+
+	//end of delete function function update
+
+
+	public Patient(){
+
+	}
 	public String getBloodGroup() {
 		return bloodGroup;
 	}

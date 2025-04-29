@@ -12,9 +12,11 @@ public class Appointment {
     private int appointmentid;
 
     @ManyToOne
+    @JoinColumn(name="doctorID,referenceColumnName=doctorID")
     private Doctor doctor;
 
     @ManyToOne
+    @JoinColumn(name="patientID,referenceColumnName=patientID")
     private Patient patient;
 
     private  String appointmentDate;

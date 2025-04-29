@@ -2,6 +2,8 @@ package com.example.project.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="DocterDetails")
 
@@ -19,6 +21,13 @@ public class Doctor {
 
 	private String username;
 	private String password;
+
+
+	//added delete function
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Appointment> appointments;
+
+// end of delete function error code
 
 	public String getUsername() {
 		return username;
